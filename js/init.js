@@ -42,7 +42,7 @@ var getJSONData = function(url){
 
 if(sessionStorage.getItem("user") == undefined || sessionStorage.getItem("pass") == undefined)
 {
-  window.location.href = "Login.html";
+  window.location.href = "login.html";
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
