@@ -10,7 +10,7 @@ document.getElementById("trigger").addEventListener("click",function(){
         sessionStorage.setItem("pass",contraseña.value);
         alert("Bienvenido "+usuario.value);
     
-        window.location.href = "products.html";
+        window.location.href = "index.html";
     }
     
   
