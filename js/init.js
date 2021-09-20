@@ -50,3 +50,7 @@ if(sessionStorage.getItem("user") == undefined || sessionStorage.getItem("pass")
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 });
+
+var usuario_nav = document.getElementById("show-username");
+
+usuario_nav.innerText = sessionStorage.getItem("user");
