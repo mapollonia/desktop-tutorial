@@ -135,6 +135,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
-var usuario_nav = document.getElementById("show-username");
+var usuario_nav = document.getElementById("dropdownMenuButton");
 
 usuario_nav.innerText = sessionStorage.getItem("user");

@@ -46,18 +46,21 @@ function showComments(array){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
+    //obtengo la información del producto
+    getJSONData(PRODUCT_INFO_URL).then(function(productInfoObj){
+        if (productInfoObj.status === "ok")
         {
-            product = resultObj.data;
+            product = productInfoObj.data;
 
+            //obtengo las etiquetas html de cada campo del objeto product info
             let categoryNameHTML  = document.getElementById("productName");
             let categoryDescriptionHTML = document.getElementById("productDescription");
             let costHTML = document.getElementById("cost");
             let currencyHTML = document.getElementById("currency");
             let soldCountHTML = document.getElementById("soldCount");
             let categoryHTML = document.getElementById("category");
-        
+            
+            //agrego en cada html la informacion correspondiente
             categoryNameHTML.innerHTML = product.name;
             categoryDescriptionHTML.innerHTML = product.description;
             costHTML.innerHTML = product.cost;
@@ -68,6 +71,28 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+
+            //obtengo la lista de productos y muestro solo los relacionados
+            getJSONData(PRODUCTS_URL).then(function(productsObj){
+                if (productsObj.status === "ok"){
+                    let prodList = productsObj.data;
+                    let relatedHTML = document.getElementById("related");
+
+                    let htmlRelProdToAppend = "";
+                    
+                    for (let i = 0; i < product.relatedProducts.length; i++){
+                        htmlRelProdToAppend += `
+                        <div class="card" style="width: 18rem;">
+                            <img src="` + prodList[product.relatedProducts[i]].imgSrc + `" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-text">` + prodList[product.relatedProducts[i]].name + `</h4>
+                                <p class="card-text">` + prodList[product.relatedProducts[i]].description + `</p>
+                            </div>
+                        </div>`
+                    }
+                    relatedHTML.innerHTML = htmlRelProdToAppend;
+                }
+            });
         }
     });
 
@@ -79,6 +104,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
-var usuario_nav = document.getElementById("show-username");
+var usuario_nav = document.getElementById("dropdownMenuButton");
 
 usuario_nav.innerText = sessionStorage.getItem("user");
