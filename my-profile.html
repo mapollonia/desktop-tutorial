@@ -53,11 +53,61 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="text-center p-4">
+      <h2>Mi perfil</h2>
+      <p class="lead">Ingresa tus datos personales.</p>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+        <form class="needs-validation" id="profile-info">
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="userName">Nombre: <span id="Name"></span></label>
+              <input type="text" class="form-control" id="userName" placeholder="" value="" >
+              <div class="invalid-feedback">
+                Ingresa tu nombre
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="userLastName">Apellido: <span id="LastName"></span></label>
+              <input type="text" class="form-control" id="userLastName" placeholder="" value="" >
+              <div class="invalid-feedback">
+                Ingresa tu apellido
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="userAge">Edad: <span id="Age"></span></label>
+              <input type="text" class="form-control" id="userAge" placeholder="" value="" >
+              <div class="invalid-feedback">
+                Ingresa tu edad
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="userMail">E-mail: <span id="Mail"></span></label>
+              <input type="text" class="form-control" id="userMail" placeholder="" value="" >
+              <div class="invalid-feedback">
+                Ingresa tu E-mail
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="userPhone">Teléfono: <span id="Phone"></span></label>
+              <input type="text" class="form-control" id="userPhone" placeholder="" value="" >
+              <div class="invalid-feedback">
+                Ingresa tu Teléfono
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg" type="submit">Guardar cambios</button>
+        </form>
+      </div>
     </div>
   </div>
   <footer class="text-muted bg-light">
