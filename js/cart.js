@@ -1,4 +1,5 @@
 var cartProducts=[];
+var percentage=10;
 
 function updateProductSubtotal(){
     getCart(CART_INFO_URL).then(response=>{
@@ -10,7 +11,7 @@ function updateProductSubtotal(){
             let subtotal = amount * cost;
             document.getElementById(`dynamic${i}`).innerText = subtotal;
         }
-        update();
+        update(percentage);
     })
 }
 
@@ -21,6 +22,10 @@ function update()
         sum += parseInt(document.getElementById(`dynamic${j}`).innerText);
     }
     document.getElementById("productTotal").innerText = "UYU " + sum;
+
+    let total = sum;
+    total += sum * percentage / 100;
+    document.getElementById("total").innerText = "UYU " + total;
 }
 
 function showCart(){
@@ -63,9 +68,14 @@ document.addEventListener("DOMContentLoaded", function(e){
     getCart(CART_INFO_URL).then(response=>{
         cartProducts = response.articles;
         showCart();
-        update()
+        update(percentage);
     })
 })
+
+function updatePercentage(newPercent){
+    percentage = newPercent;
+    update();
+}
 
 var usuario_nav = document.getElementById("dropdownMenuButton");
 
