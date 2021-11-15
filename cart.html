@@ -41,7 +41,8 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           Username
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -54,21 +55,171 @@
   </nav>
   <div class="container">
     <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Subtotal</th>
-          </tr>
-        </thead>
-        <tbody id="cart">
-            
-            
-          </tbody>
-        </table>
-</div>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="cart">
+
+
+      </tbody>
+    </table>
+    <br>  
+    <h5 class="mb-3">Tipo de envío</h5>
+    <div class="d-block my-3">
+      <div class="custom-control custom-radio">
+        <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="" onclick="updatePercentage(10)">
+        <label class="custom-control-label" for="goldradio">Gold (10%)</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="" onclick="updatePercentage(3)">
+        <label class="custom-control-label" for="premiumradio">Premium (3%)</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="" onclick="updatePercentage(0)">
+        <label class="custom-control-label" for="standardradio">Estándar (0%)</label>
+      </div>
+      <div class="row">
+        <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver condiciones</button>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <th scope="col">Total a pagar</th>
+        <th scope="col" id="total"></th>
+      </thead>
+    </table>
+    <br>
+    <div class="row">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentMethodModal">Seleccionar método de pago</button>
+    </div>
+
+
+  </div>
+  <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Condiciones de envío</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+              <div class="row">
+                  <h5 class="text-warning">Gold (10%)</h5>
+                  <p class="muted text-justify">Tu producto llegará dentro de las 24hs hábiles siguientes a la finalización de la compra.</p>
+              </div>
+              <hr>
+              <div class="row">
+                  <h5 class="text-primary">Premium (3%)</h5>
+                  <p class="muted text-justify">Tu producto llegará dentro de las 72 hs hábiles siguientes a la finalización de la compra.</p>
+              </div>
+              <hr>
+              <div class="row">
+                  <h5 class="text-secondary">Estándar (0%)</h5>
+                  <p class="muted text-justify">Tu producto llegará dentro de las dos semanas siguientes a la finalización de la compra.</p>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="paymentMethodModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Métodos de pago</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+              <div class="row">
+                <div class="custom-control custom-radio">
+                  <input id="creditcard" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                  <label class="custom-control-label" for="creditcard">Tarjeta de crédito</label>
+                </div>
+                  <form class="needs-validation" id="profile-info">
+                    
+                    <div class="row">
+                      <div class="col-md-8 mb-3">
+                        <label for="cardNumber">Número de tarjeta: </label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="" value="" >
+                        <div class="invalid-feedback">
+                          Ingresa tu número de tarjeta.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 mb-3">
+                        <label for="cvv">CVV: </label>
+                        <input type="text" class="form-control" id="cvv" placeholder="" value="" >
+                        <div class="invalid-feedback">
+                          Ingresa el CVV de tu tarjeta (tres dígitos al dorso).
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8 mb-3">
+                        <label for="expiration">Vencimiento (MM/AAAA): </label>
+                        <input type="text" class="form-control" id="expiration" placeholder="" value="" >
+                        <div class="invalid-feedback">
+                          Ingresa la fecha de vencimiento de tu tarjeta.
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="custom-control custom-radio">
+                  <input id="bankTransfer" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                  <label class="custom-control-label" for="bankTransfer">Transferencia bancaria</label>
+                </div>
+                  <form class="needs-validation" id="profile-info">
+                    <div class="row">
+                      <div class="col-md-9 mb-3">
+                        <label for="bank">Banco: </label>
+                        <input type="text" class="form-control" id="bank" placeholder="" value="" >
+                        <div class="invalid-feedback">
+                          Ingresa tu banco de preferencia.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8 mb-3">
+                        <label for="accountNumber">Número de cuenta: </label>
+                        <input type="text" class="form-control" id="accountNumber" placeholder="" value="" >
+                        <div class="invalid-feedback">
+                          Ingresa el número de la cuenta que utilizarás para realizar la transferencia.
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
